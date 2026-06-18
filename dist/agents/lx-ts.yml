@@ -44,3 +44,6 @@ toolsList:
   - load-skill
 skills:
   - create-or-edit-code
+  - update-project-nav
+  - update-codebase-summary
+  - create-readme
