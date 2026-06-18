@@ -61,29 +61,11 @@ wagent.yml (Test agent)
 | **Worker** | Lightweight agent for specific operations | `worker-shell.yml` |
 | **Test Agent** | Uses workers for long-running tasks | `wagent.yml` |
 
-### Backend Configuration
-
-Some agents have explicit backend requirements:
-
-| Backend | Agents |
-|---------|--------|
-| `llamacpp_colin` | `lx-coder`, `lx-coder-ts`, `lx-planner`, `lx-review`, `lx-doc`, `lx-test` |
-| Default (configurable) | `lx.yml`, `lx-ts`, `lx-manager`, `lx-project`, `lx-colab`, `lx-ts-colab`, `lxa` |
-| Default (configurable) | `wagent`, `worker-shell` |
-
-> **Note**: Some agent YAML files contain a typo in the backend name (`llamaccp` instead of `llamacpp_colin`) for `lx-colab`, `lx-search`, and `lx-ts-colab`. These may need correction when configuring your environment.
-
 ## 📦 Installation
 
 ```bash
 npm install lynx-coder
 ```
-
-### Dependencies
-
-- `@agent-smith/core` — Runtime engine for feature discovery and agent execution
-- `ansi-colors` — Terminal output formatting
-- `marked-terminal` — Markdown rendering in terminal
 
 ## 🚀 Quick Start
 
