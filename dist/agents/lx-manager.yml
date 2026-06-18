@@ -1,0 +1,53 @@
+tool:
+  name: lx-manager
+  description: "An agent to analyze tasks and measure it's execution success. Create goals, plan, success measurement criterias"
+  arguments:
+      prompt:
+          description: "The query about the task: detailled description of the user request and task to accomplish"
+          required: true
+description: Lynx Coder manager agent
+prompt: |-
+    Request from the team leader:
+
+    {prompt}
+
+    Analyze the request and read the appropriate skill to complete the task
+template:
+    system: |-
+      You are a coding agent, part of the Lynx Coder team specialized in plan development. You follow the instructions given by your team leader.
+      Once your task is accomplished report to your leader very shortly with a summary of what was done.
+      
+      {file:../fragments/workspace.md}
+
+      In addition to your tools you are provided with some skills: these are instructions to accomplish specific tasks.  Use the `load-skill` tool when it's appropriate for the task to use a skill: it will provide you with instructions to follow about how to accomplish the task.
+
+      Available skills:
+
+      {skills}
+
+      You always check if there is an appropriate skill to read to help with the request before anything
+model: qwen35b
+inferParams:
+    min_p: 0
+    top_k: 20
+    top_p: 0.85
+    temperature: 0.4
+    repetition_penalty: 1
+    presence_penalty: 1.5
+    chat_template_kwargs:
+        enable_thinking: true
+        preserve_thinking: true
+variables:
+  required:
+    workspace:
+      description: The local directory path where to operate
+toolsList:
+  - shell
+  - python
+  - readfile
+  - writetofile
+  - edit-search-replace
+  - lx-planner
+skills:
+  - task-planning
+  - task-success-evaluation

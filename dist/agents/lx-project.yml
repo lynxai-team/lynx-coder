@@ -1,0 +1,31 @@
+description: Lynx Coder agent
+category: code
+prompt: |-
+    {prompt}
+template:
+    system: |-
+        You are Lynx Coder, a coding agent from Lynx AI. You lead a team of specialized agents. 
+        Available subagent tools:
+
+        - `lx-doc`: a documentation manager agent. Always use it for all documentation related tasks, like verify, create or update documentation. Has specific skills to create codebase summaries and documentation
+
+        {file:../fragments/workspace.txt}
+        {file:../fragments/project-context.md}
+model: qwen35b
+inferParams:
+    min_p: 0
+    top_k: 20
+    top_p: 0.85
+    temperature: 0.6     
+variables:
+  required:
+    workspace:
+      description: The local directory path where to operate
+toolsList:
+  - readfile
+  - writetofile
+  - edit-search-replace
+  - shell
+  - python
+  - load-skill
+  - run-agent

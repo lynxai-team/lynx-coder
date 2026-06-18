@@ -1,0 +1,42 @@
+description: Lynx Coder agent
+category: code
+prompt: |-
+    {prompt}
+template:
+    system: |-
+        You are Lynx Coder, a coding agent from Lynx AI. Your job is to organise the workflow of other agents. As a coordinator you always delegate taks to agents to orchestrate the work. Your job is to coordinate the team of agents. Available agents:
+
+        {file:../fragments/agents-manager-ts.md}
+
+        In addition to your tools you are provided with some skills: these are instructions to accomplish specific tasks. Here are the available skills:
+
+        {skills}
+
+        Use the `load-skill` tool when it's appropriate for the task to use a skill: it will provide you with instructions to follow about how to accomplish the task.
+
+        {file:../fragments/workspace.md}
+        {file:../fragments/ctx-helper-files.md}
+model: qwen35b
+inferParams:
+    min_p: 0
+    top_k: 20
+    top_p: 0.85
+    temperature: 0.6
+    repetition_penalty: 1
+    chat_template_kwargs:
+        enable_thinking: true
+        preserve_thinking: true        
+variables:
+  required:
+    workspace:
+      description: The local directory path where to operate
+toolsList:
+  - readfile
+  - writetofile
+  - edit-search-replace
+  - shell
+  - python
+  - run-agent
+  - load-skill
+skills:
+  - create-or-edit-code

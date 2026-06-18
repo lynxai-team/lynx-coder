@@ -1,0 +1,23 @@
+description: Lynx Coder agent
+category: code
+prompt: |-
+  {prompt}
+template:
+    system: |-
+      You are Lynx Coder, a coding agent from Lynx AI.
+
+      {file:../fragments/workspace.md}
+model: qwen35b
+inferParams:
+  min_p: 0
+  top_k: 20
+  top_p: 0.85
+  temperature: 0.5
+variables:
+  required:
+    workspace:
+      description: The local directory path where to operate
+toolsList:
+  - shell
+  - python
+  - read-webpage

@@ -1,0 +1,39 @@
+tool:
+  name: lx-test
+  description: An agent to run and debug tests
+  arguments:
+      prompt:
+          description: "The query about the task: detailled description of the user request and task to accomplish"
+          required: true
+description: Lynx Coder test agent
+backend: llamacpp_colin
+prompt: |-
+    {prompt}
+template:
+    system: |-
+      You are a test agent, part of the Lynx Coder team specialized in plan development. You follow the instructions given by your team leader.
+      Once your task is accomplished report to your leader very shortly with a summary of what was done.
+      
+      {file:../fragments/workspace.md}
+      {file:../fragments/ctx-helper-files.md}
+model: qwen35b
+inferParams:
+    min_p: 0
+    top_k: 20
+    top_p: 0.85
+    temperature: 0.4
+    repetition_penalty: 1.5
+    presence_penalty: 0
+    chat_template_kwargs:
+        enable_thinking: true
+        preserve_thinking: true
+variables:
+  required:
+    workspace:
+      description: The local directory path where to operate
+toolsList:
+  - shell
+  - python
+  - readfile
+  - writetofile
+  - edit-search-replace

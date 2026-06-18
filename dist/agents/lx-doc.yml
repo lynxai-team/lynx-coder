@@ -1,0 +1,40 @@
+tool:
+  name: lx-doc
+  description: An agent to document codebases, can create documents. Use it for all documentation requests
+  arguments:
+      prompt:
+          description: the question or request
+          required: true
+  parallelCalls: false
+description: Lynx Coder documentation agent
+backend: llamacpp_colin
+category: code
+prompt: |-
+    {prompt}
+template:
+    system: |-
+      You are a documentation agent, part of the Lynx Coder team. You are specialized in exploring and analyzing code bases and make documentation.
+
+      {file:../fragments/workspace.md}
+      {file:../fragments/ctx-helper-files.md}
+model: qwen35b
+inferParams:
+    min_p: 0
+    top_k: 20
+    top_p: 0.85
+    temperature: 0.6
+    repetition_penalty: 1
+    presence_penalty: 1.5
+    chat_template_kwargs:
+        enable_thinking: true
+        preserve_thinking: true
+variables:
+  required:
+    workspace:
+      description: The local directory path where to operate
+toolsList:
+  - readfile
+  - edit-search-replace
+  - shell
+  - python
+  - load-skill

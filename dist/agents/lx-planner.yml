@@ -1,0 +1,53 @@
+tool:
+  name: lx-planner
+  description: An agent to analyze tasks, break down to subtasks and create a step by step execution plan 
+  arguments:
+      prompt:
+          description: "The query about the task: detailled description of the user request and task to accomplish"
+          required: true
+description: Lynx Coder planner agent
+backend: llamacpp_colin
+prompt: |-
+    Your workflow is:
+
+    1. Analyze the task and decompose it into multiple actionable steps: load the `task-planning` skill
+    2. Review the steps and create a detailled step by execution plan
+    3. Create the task directory at /workspace/.agents/tasks/[task-name]
+    4. Write the plan to /workspace/.agents/tasks/[task-name]/plan.md and create /workspace/.agents/tasks/[task-name]/state.md
+    5. Add succes measurement criterias: : load the `task-success-evaluation` skill
+
+    Request from the team leader:
+
+    {prompt}
+template:
+    system: |-
+      You are a coding agent, part of the Lynx Coder team specialized in plan development. You follow the instructions given by your team leader.
+      Once your task is accomplished report to your leader very shortly with a summary of what was done.
+      
+      {file:../fragments/workspace.md}
+      {file:../fragments/ctx-helper-files.md}
+model: qwen35b
+inferParams:
+    min_p: 0
+    top_k: 20
+    top_p: 0.85
+    temperature: 0.4
+    repetition_penalty: 1.5
+    presence_penalty: 0
+    chat_template_kwargs:
+        enable_thinking: true
+        preserve_thinking: true
+variables:
+  required:
+    workspace:
+      description: The local directory path where to operate
+toolsList:
+  - shell
+  - python
+  - readfile
+  - writetofile
+  - edit-search-replace
+  - load-skill
+skills:
+  - task-planning
+  - task-success-evaluation

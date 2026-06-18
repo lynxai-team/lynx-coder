@@ -1,0 +1,19 @@
+description: use for all shell access operations
+prompt: |-
+    Instructions from the leader agent: your task is: {prompt}
+
+    {file:../fragments/workspace.txt}
+model: qwen4b
+type: "worker"
+inferParams:
+    min_p: 0
+    top_k: 20
+    top_p: 0.95
+    temperature: 0.4
+    repeat_penalty: 1
+variables:
+  required:
+    workspace:
+      description: The local directory path where to operate
+toolsList:
+  - shell
