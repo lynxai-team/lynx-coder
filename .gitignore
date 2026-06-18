@@ -1,0 +1,16 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+!/doc/dist
+!/packages/features/git/dist
+*.local
+yarn.lock
+yarn-error.log
+.yarnrc
+.vscode
+package-lock.json
+coverage
+.aider*
+.continue
+.agents/tasks
