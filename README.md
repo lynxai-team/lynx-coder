@@ -1,7 +1,5 @@
 # Lynx Coder
 
-[![npm](https://img.shields.io/npm/v/lynx-coder)](https://www.npmjs.com/package/lynx-coder)
-
 A collection of Lynx AI coding agents, skills, and actions for the [Agent Smith](https://github.com/lynxai-team/agent-smith) framework — provides specialized agents for code coordination, planning, review, and testing workflows.
 
 ## 📋 Overview
