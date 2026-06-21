@@ -13,7 +13,6 @@ template:
 
       Evaluate the request. Execute it if you are in collaborator mode, or and organise the work of collaborators if you are in main agent mode.
 model: qwen35b
-backend: llamaccp
 inferParams:
     min_p: 0
     top_k: 20

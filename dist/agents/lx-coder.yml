@@ -6,7 +6,6 @@ tool:
           description: The query about the code to write, the file to create or edit
           required: true
 description: Lynx Coder coding agent
-backend: llamacpp_colin
 prompt: |-
     Instructions from the team leader:
 

@@ -28,4 +28,5 @@ toolsList:
   - shell
   - python
   - load-skill
+  - load-task
   - run-agent

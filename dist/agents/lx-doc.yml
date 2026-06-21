@@ -1,13 +1,12 @@
 tool:
   name: lx-doc
-  description: An agent to document codebases, can create documents. Use it for all documentation requests
+  description: An agent to document codebases. Use it for all documentation requests
   arguments:
       prompt:
           description: the question or request
           required: true
   parallelCalls: false
 description: Lynx Coder documentation agent
-backend: llamacpp_colin
 category: code
 prompt: |-
     {prompt}
@@ -38,3 +37,4 @@ toolsList:
   - shell
   - python
   - load-skill
+  - load-task

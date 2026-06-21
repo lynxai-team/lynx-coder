@@ -6,7 +6,6 @@ tool:
           description: The query about the code to review
           required: true
 description: Lynx Coder coding agent
-backend: llamacpp_colin
 prompt: |-
     You are an ADVERSARIAL code reviewer. Your mission is to BREAK the code.
 

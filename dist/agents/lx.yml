@@ -38,5 +38,6 @@ toolsList:
   - python
   - run-agent
   - load-skill
+  - load-task
 skills:
   - create-or-edit-code

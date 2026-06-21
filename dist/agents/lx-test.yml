@@ -6,7 +6,6 @@ tool:
           description: "The query about the task: detailled description of the user request and task to accomplish"
           required: true
 description: Lynx Coder test agent
-backend: llamacpp_colin
 prompt: |-
     {prompt}
 template:

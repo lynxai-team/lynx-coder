@@ -1,12 +1,11 @@
 tool:
-  name: lx-coder
-  description: An agent to write code. Can create and edit files
+  name: lx-coder-ts
+  description: An agent to write typescript code. Can create and edit files
   arguments:
       prompt:
           description: The query about the code to write, the file to create or edit
           required: true
 description: Lynx Coder coding agent
-backend: llamacpp_colin
 prompt: |-
     Instructions from the team leader:
 

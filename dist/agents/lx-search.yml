@@ -12,7 +12,6 @@ template:
     system: |-
       You are a web search agent, part of the Lynx Coder team. To make a web search use `ddsearch` to find relevant results and then use `read-webpage` to open the pages and read the content
 model: qwen35b
-backend: llamaccp
 inferParams:
     min_p: 0
     top_k: 20
