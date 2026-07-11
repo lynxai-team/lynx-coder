@@ -11,9 +11,7 @@ prompt: |-
 
     1. Analyze the task and decompose it into multiple actionable steps: load the `task-planning` skill
     2. Review the steps and create a detailled step by execution plan
-    3. Create the task directory at /workspace/.agents/tasks/[task-name]
-    4. Write the plan to /workspace/.agents/tasks/[task-name]/plan.md and create /workspace/.agents/tasks/[task-name]/state.md
-    5. Add succes measurement criterias: : load the `task-success-evaluation` skill
+    3. Load the `create-task` skill and follow the instructions to create a task
 
     Request from the team leader:
 
@@ -24,15 +22,15 @@ template:
       Once your task is accomplished report to your leader very shortly with a summary of what was done.
       
       {file:../fragments/workspace.md}
-      {file:../fragments/ctx-helper-files.md}
+      {file:../fragments/ctx-helper-files.md} Start by reading those files to get the project's context.
 model: qwen35b
 inferParams:
     min_p: 0
     top_k: 20
     top_p: 0.85
     temperature: 0.4
-    repetition_penalty: 1.5
-    presence_penalty: 0
+    repetition_penalty: 1
+    presence_penalty: 1.2
     chat_template_kwargs:
         enable_thinking: true
         preserve_thinking: true

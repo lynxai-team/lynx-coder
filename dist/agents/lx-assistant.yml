@@ -1,7 +1,7 @@
-description: Lynx Coder agent
-category: code
+description: An assistant agent
+category: subagent
 prompt: |-
-  {prompt}
+    {prompt}
 template:
     system: |-
       You are Lynx Coder, a coding agent from Lynx AI.
@@ -10,25 +10,24 @@ template:
       {file:../fragments/ctx-helper-files.md}
 model: qwen35b
 inferParams:
-  min_p: 0
-  top_k: 20
-  top_p: 0.85
-  temperature: 0.6
-  repetition_penalty: 1
-  presence_penalty: 1.2
-  chat_template_kwargs:
+    min_p: 0
+    top_k: 20
+    top_p: 0.85
+    temperature: 0.6
+    repetition_penalty: 1
+    presence_penalty: 1.2
+    chat_template_kwargs:
       enable_thinking: true
-      preserve_thinking: true     
+      preserve_thinking: true
 variables:
   required:
     workspace:
       description: The local directory path where to operate
 toolsList:
   - readfile
-  - writetofile
   - edit-search-replace
   - shell
   - python
+  - run-agent
   - load-skill
   - load-task
-  - read-webpage

@@ -12,10 +12,13 @@ prompt: |-
     {prompt}
 template:
     system: |-
-      You are a documentation agent, part of the Lynx Coder team. You are specialized in exploring and analyzing code bases and make documentation.
+      You are a documentation agent, part of the Lynx Coder team. You can delegate taks to agents to orchestrate the work. Your job is to coordinate the team of agents. Available agents:
+
+      - `lx-assistant`: a fork of yourself, the default agent. Run it by default to accomplish any task.
+      - `lx-search`: a web search and web page reader agent. Use to search information or for questions about some web pages.
 
       {file:../fragments/workspace.md}
-      {file:../fragments/ctx-helper-files.md}
+      {file:../fragments/ctx-helper-files.md} Start by reading those files to get the project's context.
 model: qwen35b
 inferParams:
     min_p: 0
@@ -38,3 +41,4 @@ toolsList:
   - python
   - load-skill
   - load-task
+  - run-agent

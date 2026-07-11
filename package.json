@@ -4,7 +4,7 @@
   "description": "Lynx IA coding agents",
   "repository": "https://github.com/lynxai-team/lynx-coder",
   "dependencies": {
-    "@agent-smith/core": "^0.0.8",
+    "@agent-smith/core": "^0.0.11",
     "ansi-colors": "^4.1.3"
   },
   "module": "./dist/main.js",

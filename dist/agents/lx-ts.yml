@@ -8,17 +8,8 @@ template:
 
         {file:../fragments/agents-manager-ts.md}
 
-        In addition to your tools you are provided with some skills: these are instructions to accomplish specific tasks. Here are the available skills:
-
-        {skills}
-
-        Tools instructions:
-
-        - Use the `load-skill` tool when it's appropriate for the task to use a skill: it will provide you with instructions to follow about how to accomplish the task.
-        - Remember: use the `run-npm-command` tool to run any npm command, not the shell
-
         {file:../fragments/workspace.md}
-        {file:../fragments/ctx-helper-files.md}
+        {file:../fragments/ctx-helper-files.md} Start by reading those files to get the project's context.
 model: qwen35b
 inferParams:
     min_p: 0
@@ -42,5 +33,3 @@ toolsList:
   - run-agent
   - run-npm-command
   - load-skill
-skills:
-  - create-or-edit-code

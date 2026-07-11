@@ -16,15 +16,17 @@ template:
       Once your task is accomplished report to your leader very shortly with a summary of what was done.
       
       {file:../fragments/workspace.md}
-      {file:../fragments/ctx-helper-files.md}
-model: qwen80b
+      {file:../fragments/ctx-helper-files.md} Start by reading those files to get the project's context.
+model: qwen35b
 inferParams:
     min_p: 0
-    top_k: 10
-    top_p: 0.95
-    temperature: 0.2
+    top_k: 20
+    top_p: 0.85
+    temperature: 0.6
+    repetition_penalty: 1
     chat_template_kwargs:
-        enable_thinking: true
+      enable_thinking: true
+      preserve_thinking: true
 variables:
   required:
     workspace:
