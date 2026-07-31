@@ -2,6 +2,7 @@
 # tool
 name: run-npm-command
 description: run an npm command inside the workspace
+parallel: false
 arguments:
     arguments:
         description: 'the arguments for the npm command: example: "test", "run build" is valid, "test 2>&1" or any other pipe is invalid, it is not a shell'
@@ -31,7 +32,7 @@ async function action(args, options) {
     if (!ok) {
         return msg;
     }
-    const pp = args?.path ? args.path.replace("/workspace", msg) : msg;
+    const pp = msg;
     // try to cleanup the ai mess
     let c = args.arguments.split("|")[0];
     c = args.arguments.split("&")[0];
@@ -41,14 +42,32 @@ async function action(args, options) {
     const npmArgs = c.trim().split(" ");
     let data = "";
     const aw = createAwaiter();
-    const res = await utils.runShellCmd("npm", ["--prefix", pp, ...npmArgs], {
+    console.log("Executing: npm", "--prefix", pp, ...npmArgs);
+    let i = 1;
+    const stderrw = () => setTimeout(() => {
+        //console.log("END", i);
+        aw.unblock();
+    }, 100);
+    const res = await utils.execute("npm", ["--prefix", pp, ...npmArgs], {
         onStdout: (o) => {
             console.log(o);
             data += o;
         },
-        onErr: console.log,
+        onStderr: (o) => {
+            //console.log(i, "STDERR", o);
+            data += i == 1 ? ("STDERR: \n" + o) : o;
+            if (i == 1) {
+                stderrw();
+            }
+            ++i;
+        },
+        onError: (o) => {
+            console.log("ERROR", o);
+            data += "ERROR: " + o;
+            aw.unblock();
+        },
         onFinished: () => {
-            console.log("====================== END\n", data, "=========================");
+            console.log("OK", data);
             aw.unblock();
         }
     });

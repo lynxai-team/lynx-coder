@@ -10,7 +10,7 @@ template:
         - `lx-doc`: a documentation manager agent. Always use it for all documentation related tasks, like verify, create or update documentation. Has specific skills to create codebase summaries and documentation
 
         {file:../fragments/workspace.md}
-        {file:../fragments/project-context.md}
+        {file:../fragments/ctx-helper-files.md}
 model: qwen35b
 inferParams:
     min_p: 0

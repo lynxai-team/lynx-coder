@@ -6,12 +6,12 @@ A collection of Lynx AI coding agents, skills, and actions for the [Agent Smith]
 
 ## ✨ Features
 
-- 🤖 **16 specialized agents** — Coordinator, coder, planner, reviewer, doc writer, tester, searcher, manager, and worker agents
+- 🤖 **19 specialized agents** — Coordinator, coder, planner, reviewer, doc writer, tester, searcher, manager, and worker agents
 - 🧠 **Coordinator pattern** — `lx.yml` delegates tasks to specialized agents via the `run-agent` tool
 - 🤝 **Collaborator pattern** — `lx-colab.yml` and `lx-ts-colab.yml` use `run-collaborator` to fork independent agent instances
 - 🏗️ **Worker pattern** — `wagent.yml` delegates long-running tasks to worker agents (`worker-shell.yml`)
 - 📚 **3 reusable skills** — `create-or-edit-code`, `task-planning`, and `task-success-evaluation` for structured workflows
-- 🔧 **Custom actions** — npm command execution with path authorization and shell sanitization
+- 🔧 **Custom actions** — npm command execution (`run-npm-command`) and Go shell execution (`goshell`)
 - 📝 **Context fragments** — Dynamic context injection via `{file:...}` syntax for workspace awareness
 
 ## 📦 Installation
@@ -108,31 +108,47 @@ Agents reference these markdown fragments for dynamic context injection:
 | `agents-manager.md` | List of available sub-agents (general) |
 | `agents-manager-ts.md` | List of available sub-agents (TypeScript-focused) |
 
-### Custom Action: `run-npm-command`
+### Custom Actions
+
+#### `run-npm-command`
 
 Execute npm commands safely within the workspace. Pipe characters (`|`), shell operators (`&`, `;`), and output redirection (`2>`) are sanitized — this runs npm directly, not through a shell interpreter.
+
+#### `goshell`
+
+Execute shell commands for Go project workflows. Handles command execution with workspace path resolution.
 
 ## 📁 Project Structure
 
 ```
 lynx-coder/
 ├── dist/
-│   ├── agents/              # 16 YAML agent definitions
+│   ├── agents/              # 19 YAML agent definitions
 │   │   ├── lx.yml           # Main coordinator (qwen35b)
 │   │   ├── lx-ts.yml        # TypeScript coordinator (qwen35b)
 │   │   ├── lx-coder.yml     # Coding agent (qwen80b)
 │   │   ├── lx-coder-ts.yml  # TypeScript coding agent (qwen80b)
 │   │   ├── lx-planner.yml   # Planning agent (qwen35b)
 │   │   ├── lx-review.yml    # Code review agent (qwen35b)
+│   │   ├── lx-doc.yml       # Documentation agent (qwen35b)
+│   │   ├── lx-test.yml      # Test agent (qwen35b)
+│   │   ├── lx-search.yml    # Search agent (qwen35b)
+│   │   ├── lx-manager.yml   # Manager agent (qwen35b)
+│   │   ├── lx-project.yml   # Project agent (qwen35b)
 │   │   ├── lx-colab.yml     # Collaborator agent (qwen35b)
 │   │   ├── lx-ts-colab.yml  # TypeScript collaborator (qwen35b)
+│   │   ├── lxa.yml          # General agent (qwen35b)
+│   │   ├── lx-assistant.yml # Assistant agent (qwen35b)
+│   │   ├── lxgo.yml         # Go agent (qwen35b)
+│   │   ├── lxgots.yml       # Go/TS hybrid agent (qwen35b)
 │   │   ├── wagent.yml       # Test agent with workers (qwen4b)
-│   │   └── ...              # Other agents
+│   │   └── worker-shell.yml # Shell worker (qwen4b)
 │   ├── skills/              # 3 skill definitions
 │   │   ├── create-or-edit-code/SKILL.md
 │   │   ├── task-planning/SKILL.md
 │   │   └── task-success-evaluation/SKILL.md
 │   ├── actions/             # Custom tool actions
+│   │   ├── goshell.js
 │   │   └── run-npm-command.js
 │   ├── fragments/           # Context helper markdown files
 │   │   ├── workspace.md
