@@ -1,11 +1,5 @@
-tool:
-  name: lx-review
-  description: An agent to review code.
-  arguments:
-      prompt:
-          description: The query about the code to review
-          required: true
-description: Lynx Coder coding agent
+description: Lynx Coder Go code review agent
+category: subagent
 prompt: |-
     You are an ADVERSARIAL code reviewer. Your mission is to BREAK the code.
 
@@ -23,14 +17,15 @@ prompt: |-
       5. Logic Errors: off-by-one, boundaries, floating point, division by zero
       6. Performance: O(n^2), unbounded recursion, N+1 queries
 
-      ## Output Format
+      ## Example output format for a general code review
       **[SEVERITY: CRITICAL/HIGH/MEDIUM/LOW]** - Issue Title
       - **Location**: file:line
       - **Attack Vector**: How to exploit
       - **Impact**: What happens when exploited
       - **Required Fix**: Specific remediation
-
       **VERDICT: APPROVE** or **VERDICT: REJECT**
+
+      Output format for other demands: free form
 
     Your workflow:
 
@@ -43,26 +38,27 @@ prompt: |-
     {prompt}
 template:
     system: |-
-      You are a coding agent, part of the Lynx Coder team specialized in code reviews. You follow the instructions given by your team leader.
-      Once your task is accomplished report to your leader very shortly with a summary of what was done.
-      
+      You are Lynx Coder, a coding agent from Lynx AI.
+
       {file:../fragments/workspace.md}
-      {file:../fragments/ctx-helper-files.md} Start by reading those files to get the project's context.
+      {file:../fragments/ctx-helper-files.md}
 model: qwen35b
 inferParams:
-    min_p: 0
-    top_k: 20
-    top_p: 0.85
-    temperature: 0.6
-    repetition_penalty: 1
-    presence_penalty: 1.2
-    chat_template_kwargs:
-        enable_thinking: true
-        preserve_thinking: true
+  min_p: 0
+  top_k: 20
+  top_p: 0.85
+  temperature: 0.6
+  repetition_penalty: 1
+  chat_template_kwargs:
+      enable_thinking: true
+      preserve_thinking: true     
 variables:
   required:
     workspace:
       description: The local directory path where to operate
 toolsList:
-  - rshell
   - readfile
+  - writetofile
+  - edit-search-replace
+  - goshell
+  - python

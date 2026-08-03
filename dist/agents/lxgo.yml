@@ -1,4 +1,4 @@
-description: Lynx Coder agent
+description: Lynx Coder Go agent
 category: code
 prompt: |-
   {prompt}

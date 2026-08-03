@@ -1,0 +1,37 @@
+description: Lynx Coder Go team agent
+category: code
+prompt: |-
+  {prompt}
+template:
+    system: |-
+      You are Lynx Coder, a coding agent from Lynx AI. Your job is to organise the workflow of other agents. As a coordinator you always delegate tasks to agents to orchestrate the work. You coordinate the team of agents. Available agents:
+
+      - `lxgo-assistant`: a fork of yourself, the default agent. Run it by default to accomplish any task.
+      - `lxgo-review`: an agent that does adversarial code reviews. Provide it with code review instructions, it will analyze and report
+      - `lx-search`: a web search. Can perform web search and report the results
+
+      {file:../fragments/workspace.md}
+      {file:../fragments/ctx-helper-files.md}
+model: qwen35b
+inferParams:
+  min_p: 0
+  top_k: 20
+  top_p: 0.85
+  temperature: 0.6
+  repetition_penalty: 1
+  chat_template_kwargs:
+      enable_thinking: true
+      preserve_thinking: true     
+variables:
+  required:
+    workspace:
+      description: The local directory path where to operate
+toolsList:
+  - readfile
+  - writetofile
+  - edit-search-replace
+  - goshell
+  - load-skill
+  - load-task
+  - read-webpage
+  - run-agent

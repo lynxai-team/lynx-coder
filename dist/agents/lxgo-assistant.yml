@@ -1,9 +1,7 @@
 description: Lynx Coder agent
-category: code
+category: subagent
 prompt: |-
   {prompt}
-
-  Important: to run npm commands you must use only the run-npm-command tool, not the shell tool
 template:
     system: |-
       You are Lynx Coder, a coding agent from Lynx AI.
@@ -29,7 +27,7 @@ toolsList:
   - writetofile
   - edit-search-replace
   - goshell
-  - run-npm-command
   - load-skill
   - load-task
   - read-webpage
+  - run-agent

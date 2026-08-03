@@ -23,13 +23,13 @@ async function action(args, options) {
     //console.log("Cmd:", cmd, cmdArgs);
     const box = new SimpleBox({
         //image: 'golang:1.26',
-        image: "cimg/go:1.17-node",
+        image: "cimg/go:1.25-node",
         name: "goshellbox",
         workingDir: "/workspace",
         volumes: [
             { hostPath: location, guestPath: '/workspace' },
         ],
-        network: { "mode": "disabled" },
+        //network: { "mode": "disabled" },
         security: {
             seccompEnabled: false
         },
@@ -48,18 +48,26 @@ async function action(args, options) {
         });
     });
     let res = "";
+    setTimeout(() => {
+        res = "Timeout: the process has timed out";
+        box.stop();
+    }, 60000);
     try {
         const result = await box.exec("sh", "-c", args.command);
         //console.log("CMD RES", result);
         if (result?.stderr.length > 0) {
-            res = "[Error] exit code:" + result.exitCode + "\n" + result.stderr;
+            res += "[Stderr] exit code:" + result.exitCode + "\n" + result.stderr;
         }
-        else {
-            if (result.stdout == "") {
-                res = "Exit code: " + result.exitCode;
+        if (result?.stdout.length > 0) {
+            if (result.stdout == "" && result?.stderr.length == 0) {
+                res += "[Stdout] Exit code: " + result.exitCode;
             }
             else {
-                res = result.stdout;
+                if (res.length == 0) {
+                    res += "[Stdout] " + result.stdout;
+                } else {
+                    res += "\n\n[Stdout] " + result.stdout;
+                }
             }
         }
     }
