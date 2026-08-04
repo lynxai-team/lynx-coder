@@ -10,6 +10,8 @@ template:
       - `lxgo-review`: an agent that does adversarial code reviews. Provide it with code review instructions, it will analyze and report
       - `lx-search`: a web search. Can perform web search and report the results
 
+      Note: the agents can not run in parallel. Run only one agent at the time, no parallel work while an agent is working.
+
       {file:../fragments/workspace.md}
       {file:../fragments/ctx-helper-files.md}
 model: qwen35b
@@ -27,8 +29,8 @@ variables:
     workspace:
       description: The local directory path where to operate
 toolsList:
-  - readfile
-  - writetofile
+  - read-file
+  - write-file
   - edit-search-replace
   - goshell
   - load-skill

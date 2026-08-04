@@ -44,8 +44,8 @@ variables:
 toolsList:
   - shell
   - python
-  - readfile
-  - writetofile
+  - read-file
+  - write-file
   - edit-search-replace
   - lx-planner
 skills:

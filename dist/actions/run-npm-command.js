@@ -2,7 +2,7 @@
 # tool
 name: run-npm-command
 description: run an npm command inside the workspace
-parallel: false
+parallelCalls: false
 arguments:
     arguments:
         description: 'the arguments for the npm command: example: "test", "run build" is valid, "test 2>&1" or any other pipe is invalid, it is not a shell'

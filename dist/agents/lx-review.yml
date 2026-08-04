@@ -65,4 +65,4 @@ variables:
       description: The local directory path where to operate
 toolsList:
   - rshell
-  - readfile
+  - read-file
