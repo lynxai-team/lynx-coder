@@ -11,13 +11,12 @@ prompt: |-
 template:
     system: |-
       You are a web search agent, part of the Lynx Coder team. To make a web search use `ddsearch` to find relevant results and then use `read-webpage` to open the pages and read the content
-model: qwen35b
+model: lfm2b
 inferParams:
-    min_p: 0
-    top_k: 20
-    top_p: 0.85
-    temperature: 0.6
-    repetition_penalty: 1
+    top_k: 50
+    top_p: 0.95
+    temperature: 0.1
+    repetition_penalty: 1.1
     chat_template_kwargs:
       enable_thinking: true
       preserve_thinking: true

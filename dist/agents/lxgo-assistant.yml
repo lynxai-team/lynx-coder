@@ -30,4 +30,3 @@ toolsList:
   - load-skill
   - load-task
   - read-webpage
-  - run-agent

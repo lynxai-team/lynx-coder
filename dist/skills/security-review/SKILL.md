@@ -12,6 +12,7 @@ Execute these steps in order:
 ### 1. Understand the Codebase
 
 - Read `.agents/documentation/codebase-summary.md` and `.agents/documentation/project-nav.md` for project context
+- Load the `smart-explore` skill to get instructions about how to explore the codebase
 - Identify all source files, entry points, dependencies, and frameworks used
 - Map the architecture: authentication flows, data handling, external integrations, API endpoints
 - Note the programming language(s), runtime environment, and deployment model

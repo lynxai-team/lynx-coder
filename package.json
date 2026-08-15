@@ -1,6 +1,6 @@
 {
   "name": "lynx-coder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Lynx IA coding agents",
   "repository": "https://github.com/lynxai-team/lynx-coder",
   "scripts": {

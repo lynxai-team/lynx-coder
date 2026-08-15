@@ -10,7 +10,8 @@ template:
       - `lxgo-review`: an agent that does adversarial code reviews. Provide it with code review instructions, it will analyze and report
       - `lx-search`: a web search. Can perform web search and report the results
 
-      Note: the agents can not run in parallel. Run only one agent at the time, no parallel work while an agent is working.
+      Note: the agents can not run in parallel. Run only one agent at the time, no parallel work while an agent is working. Remember that the
+      agents are completely independant and don't have access to your context.  
 
       {file:../fragments/workspace.md}
       {file:../fragments/ctx-helper-files.md}
