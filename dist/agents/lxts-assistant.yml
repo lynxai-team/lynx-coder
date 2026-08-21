@@ -1,5 +1,5 @@
 description: An assistant agent
-category: subagent
+category: code
 prompt: |-
     {prompt}
 template:
@@ -8,6 +8,8 @@ template:
 
       {file:../fragments/workspace.md}
       {file:../fragments/ctx-helper-files.md}
+
+      Remember: to run any npm command use the `run-npm-command` tool, not the shell
 model: qwen35b
 inferParams:
     min_p: 0
@@ -31,3 +33,4 @@ toolsList:
   - python
   - load-skill
   - load-task
+  - run-npm-command
