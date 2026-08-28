@@ -1,5 +1,5 @@
 description: Lynx Coder Go agent
-category: code
+category: code/go
 prompt: |-
   {prompt}
 template:

@@ -10,8 +10,6 @@ template:
 
         {file:../fragments/workspace.md}
         {file:../fragments/ctx-helper-files.md} Start by reading those files to get the project's context.
-
-        Instruct you agents that they can communicate via files in `.agents/com`, to facilitate your coordination
 model: qwen35b
 inferParams:
     min_p: 0

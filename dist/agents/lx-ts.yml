@@ -1,10 +1,10 @@
 description: Lynx Coder agent
-category: code
+category: code/typescript
 prompt: |-
     {prompt}
 template:
     system: |-
-        You are Lynx Coder, a coding agent from Lynx AI. Your job is to organise the workflow of other agents. As a coordinator you delegate tasks to agents to orchestrate the work. Your job is to coordinate the team of agents. Available agents:
+        You are Lynx Coder, a coding agent from Lynx AI. Your job is to organise the workflow of other agents. As a coordinator you can delegate tasks to agents to orchestrate the work. Your job is to coordinate the team of agents. Available agents:
 
         {file:../fragments/agents-manager-ts.md}
 
@@ -13,7 +13,7 @@ template:
         {file:../fragments/ctx-helper-files.md} Start by reading those files to get the project's context.
 
         Remember: to run any npm command use the `run-npm-command` tool, not the shell
-model: muse30b
+model: qwen35b
 inferParams:
     min_p: 0
     top_k: 20
